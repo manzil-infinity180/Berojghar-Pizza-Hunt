@@ -177,6 +177,20 @@ body {
 .btn:hover {
   background-color: #e9bb24;
 }
+strong{
+  font-size: 1.5rem ;
+  color: #f90000;
+  font-style: italic;
+}
+.container-full {
+  max-width: 80rem;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.8rem;
+
+}
 
 /*
 SPACING SYSTEM (px)

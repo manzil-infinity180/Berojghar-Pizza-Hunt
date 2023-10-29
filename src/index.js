@@ -1,58 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-
-const pizzaData = [
-  {
-    name: "Focaccia",
-    ingredients: "Bread with italian olive oil and rosemary",
-    price: 6,
-    photoName: "pizzas/focaccia.jpg",
-    soldOut: false,
-  },
-  {
-    name: "Pizza Margherita",
-    ingredients: "Tomato and mozarella",
-    price: 10,
-    photoName: "pizzas/margherita.jpg",
-    soldOut: false,
-  },
-  {
-    name: "Pizza Spinaci",
-    ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
-    price: 12,
-    photoName: "pizzas/spinaci.jpg",
-    soldOut: false,
-  },
-  {
-    name: "Pizza Funghi",
-    ingredients: "Tomato, mozarella, mushrooms, and onion",
-    price: 12,
-    photoName: "pizzas/funghi.jpg",
-    soldOut: false,
-  },
-  {
-    name: "Pizza Salamino",
-    ingredients: "Tomato, mozarella, and pepperoni",
-    price: 15,
-    photoName: "pizzas/salamino.jpg",
-    soldOut: true,
-  },
-  {
-    name: "Pizza Prosciutto",
-    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
-    price: 18,
-    photoName: "pizzas/prosciutto.jpg",
-    soldOut: false,
-  },
-];
-
-
+import pizzaData from "./data.js";
+import pizzaFullData from "./fullData";
 function App(){
   return (<div className="container">
        <Header />
        <Menu />
        <Footer />
+       <Description />
        
     </div>);
 }
@@ -162,9 +118,37 @@ function Open({closeHour}){
   <button className="btn">Order</button>
   </div>
 }
+function Description(){
+  return <div>
+    {pizzaFullData.map(data => <Detail pizzaFull={data}/>)}
+  </div>
 
+}
+function Detail({pizzaFull}){
+  //  name: "Focaccia",
+  //  ingredients: "Bread with italian olive oil and rosemary",
+  //  price: 6,
+  //  photoName: "pizzas/focaccia.jpg",
+  //  soldOut: false,
+  //  star:5,
+  //  time: "35 min",
+  //  description:
+  return <div className={pizzaFull.soldOut? "container-full sold-out" : "container-full"}>
+    <h1><strong>Name:</strong> {pizzaFull.name}</h1>
+    <img src={pizzaFull.photoName} alt={pizzaFull.name} />
+    <div>
+    <h3><strong>Description:</strong> {pizzaFull.description}</h3>
+    <h3><strong>Ingredients:</strong> {pizzaFull.ingredients}</h3>
+    <h3><strong>Price:</strong> {pizzaFull.price}</h3>
+    <h3><strong>Time:</strong> {pizzaFull.time}</h3>
+    <h3><strong>Rating: </strong>{pizzaFull.star===1? "⭐️": pizzaFull.star===2? "⭐️⭐️":pizzaFull.star===3? "⭐️⭐️⭐️": pizzaFull.star===4? "⭐️⭐️⭐️⭐️": pizzaFull.star===5? "⭐️⭐️⭐️⭐️⭐️":"Null"}</h3>
+    </div>
+  </div>
+}
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(<App />);
+
 
